@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <!-- Puedes agregar logo, título, etc. -->
+        <!-- logo hostel link -->
     </header>
     <main>
         <!-- menu -->
@@ -19,9 +19,12 @@
             </div>
             <input type="button" value="Registrar Clientes" onclick="fnIrRegistrarCliente()">
             <input type="button" value="Registrar Reserva" onclick="fnIrRegistrarReserva()">
-  
+            <input type="button" value="Registrar Habitacion" onclick="fnIrRegistrarHabitacion()">
+            <!-- En secMenu, agregar: -->
+            <input type="button" value="Ver Habitaciones" onclick="fnMostrarHabitaciones()">
+            <input type="button" value="Ver Clientes" onclick="fnMostrarClientes()">
+            <input type="button" value="Ver Reservas" onclick="fnMostrarReservas()">
         </section>
-
 
         <!-- Login -->
         <section id="secLogin" class="tarjeta">
@@ -38,7 +41,7 @@
         <section id="secReserva" class="tarjeta" style="display:none">
             <h4>Registrar Reserva</h4>
             <select id="txtHabitacion">
-                <option value="">-- Seleccionar Habitación --</option>
+                <option value=""> >> Seleccionar Habitación </option>
                 <option value="1">Habitación #1</option>
                 <option value="2">Habitación #2</option>
                 <option value="3">Habitación #3</option>
@@ -71,27 +74,42 @@
             <input type="button" id="btnEnviarCliente" value="Registrar Cliente" onclick="fnRegistrarCliente()">
             <input type="button" value="Volver" onclick="fnVolver('secRegistrarCliente')">
         </section>
+
+        <!-- Registrar Habitaciones -->
+        <section id="secRegistrarHabitacion" class="tarjeta" style="display:none">
+            <h4>Registrar Habitacion</h4>
+            <input type="text" id="txtIdHabitacion" placeholder="ID de habitación">
+            <input type="text" id="txtTipoHabitacion" placeholder="Tipo de Habitación">
+            <input type="text" id="txtPisoHabitacion" placeholder="Piso">
+            <input type="text" id="txtCapacidad" placeholder="Capacidad Maxima">
+            <input type="button" id="btnEnviarHabitacion" value="Registrar Habitación" onclick="fnRegistrarHabitacion()">
+            <input type="button" value="Volver" onclick="fnVolver('secRegistrarHabitacion')">
+        </section>
+
+        <!-- Agregar después del formulario en cada sección -->
+        <section id="secListaHabitaciones" class="tarjeta" style="display:none">
+            <h4>📋 Habitaciones Registradas</h4>
+            <div id="listaHabitaciones"></div>
+            <input type="button" value="Volver" onclick="fnVolver('secListaHabitaciones')">
+        </section>
+
     </main>
-    <footer>
-        <!-- pie de pagina -->
-         <footer style="background:#f2f2f2;padding:15px;text-align:center;">
-    <p>Link Córdoba Hostel</p>
-    <p>Sede: Jujuy 267 | Córdoba, Argentina</p>
-    <div style="margin:0 auto; max-width:400px;">
-        <!-- Mapa de Google incrustado -->
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.1152067451526!2d-64.1922222244447!3d-31.410951795988566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432987f29efc1a1%3A0xe846d4c6903eb37c!2sJujuy%20267%2C%20X5000KAE%20C%C3%B3rdoba!5e0!3m2!1ses!2sar!4v1779680119169!5m2!1ses!2sar"
-            width="100%" 
-            height="200" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-        
-    </div>
-    <span>Desarrollado por <a href="https://github.com/kevinwired" target="_blank"><b>kevinwired</b></a></span>
-</footer>
+    <footer style="background:#f2f2f2;padding:15px;text-align:center;">
+        <p>Link Córdoba Hostel</p>
+        <p>Sede: Jujuy 267 | Córdoba, Argentina</p>
+        <div style="margin:0 auto; max-width:400px;">
+            <!-- Mapa de Google incrustado -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.1152067451526!2d-64.1922222244447!3d-31.410951795988566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432987f29efc1a1%3A0xe846d4c6903eb37c!2sJujuy%20267%2C%20X5000KAE%20C%C3%B3rdoba!5e0!3m2!1ses!2sar!4v1779680119169!5m2!1ses!2sar"
+                width="100%" 
+                height="200" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <span>Desarrollado por <a href="https://github.com/kevinwired" target="_blank"><b>kevinwired</b></a></span>
     </footer>
 </body>
 <script>
@@ -104,28 +122,7 @@ let admins = [
     { usuario: "lucas", clave: "lucas"}
 ];
 
-// Login de administrador
-function fnLogin() {
-    const vUsuario = document.getElementById("txtUsuario").value;
-    const vClave = document.getElementById("txtClave").value;
-
-    if (vUsuario === "" || vClave === "") {
-        alert("Campo usuario o clave vacío(s)!");
-        return;
-    }
-
-    let admin = admins.find(j => j.usuario === vUsuario && j.clave === vClave);
-
-    if (!admin) {
-        alert("Usuario o clave incorrectos");
-        return;
-    }
-
-    document.getElementById("secLogin").style.display = "none";
-    document.getElementById("secMenu").style.display = "block";
-}
-
-// Navegacion
+// ------------- NAVEGACION -------------
 function fnIrRegistrarCliente() {
     document.getElementById("secMenu").style.display = "none";
     document.getElementById("secRegistrarCliente").style.display = "block";
@@ -134,13 +131,67 @@ function fnIrRegistrarReserva() {
     document.getElementById("secMenu").style.display = "none";
     document.getElementById("secReserva").style.display = "block";
 }
+function fnIrRegistrarHabitacion() {
+    document.getElementById("secMenu").style.display = "none";
+    document.getElementById("secRegistrarHabitacion").style.display = "block";
+}
 
 function fnVolver(seccion) {
     document.getElementById(seccion).style.display = "none";
     document.getElementById("secMenu").style.display = "block";
 }
 
-// Registrar Cliente
+// --------- LOGIN -----------
+function fnLogin() {
+    const vUsuario = document.getElementById("txtUsuario").value;
+    const vClave = document.getElementById("txtClave").value;
+    if (vUsuario === "" || vClave === "") {
+        alert("Campo usuario o clave vacío(s)!");
+        return;
+    }
+    let admin = admins.find(j => j.usuario === vUsuario && j.clave === vClave);
+    if (!admin) {
+        alert("Usuario o clave incorrectos");
+        return;
+    }
+    document.getElementById("secLogin").style.display = "none";
+    document.getElementById("secMenu").style.display = "block";
+}
+
+// --------- REGISTRAR HABITACION -----------
+function fnRegistrarHabitacion() {
+    const id = document.getElementById("txtIdHabitacion").value.trim();
+    const tipoHab = document.getElementById("txtTipoHabitacion").value.trim();
+    const pisoHab = document.getElementById("txtPisoHabitacion").value.trim();
+    const capacidadHab = document.getElementById("txtCapacidad").value.trim();
+
+    if (!id || !tipoHab || !pisoHab || !capacidadHab ) {
+        alert("¡Por favor completa todos los campos obligatorios!");
+        return;
+    }
+    let habitaciones = JSON.parse(localStorage.getItem("habitaciones")) || [];
+    // Evita duplicados (ID de habitación único)
+    if (habitaciones.some(h => h.id === id)) {
+        alert("El ID de habitación ya está registrado.");
+        return;
+    }
+    habitaciones.push({
+        id,
+        tipo: tipoHab,
+        piso: pisoHab,
+        capacidad: capacidadHab
+    });
+    localStorage.setItem("habitaciones", JSON.stringify(habitaciones));
+    alert("¡Habitación registrada exitosamente!");
+    // Limpiar campos
+    document.getElementById("txtIdHabitacion").value = "";
+    document.getElementById("txtTipoHabitacion").value = "";
+    document.getElementById("txtPisoHabitacion").value = "";
+    document.getElementById("txtCapacidad").value = "";
+    fnVolver('secRegistrarHabitacion');
+}
+
+// --------- REGISTRAR CLIENTE -----------
 function fnRegistrarCliente() {
     const nombre    = document.getElementById("txtNombreClnte").value.trim();
     const apellido  = document.getElementById("txtApellidoClnte").value.trim();
@@ -148,12 +199,10 @@ function fnRegistrarCliente() {
     const email     = document.getElementById("txtEmailClnte").value.trim();
     const telefono  = document.getElementById("txtNroTelClnte").value.trim();
     const direccion = document.getElementById("txtDireccionClnte").value.trim();
-
     if (!nombre || !apellido || !dni || !email || !telefono || !direccion) {
         alert("¡Por favor completa todos los campos obligatorios!");
         return;
     }
-
     let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
     const existeDNI = clientes.some(c => c.dni === dni);
     if (existeDNI) {
@@ -164,7 +213,6 @@ function fnRegistrarCliente() {
     clientes.push(cliente);
     localStorage.setItem("clientes", JSON.stringify(clientes));
     alert("¡Cliente registrado exitosamente!");
-
     // Limpiar campos
     document.getElementById("txtNombreClnte").value = "";
     document.getElementById("txtApellidoClnte").value = "";
@@ -172,11 +220,10 @@ function fnRegistrarCliente() {
     document.getElementById("txtEmailClnte").value = "";
     document.getElementById("txtNroTelClnte").value = "";
     document.getElementById("txtDireccionClnte").value = "";
-
     fnVolver('secRegistrarCliente');
 }
 
-// Registrar Reserva
+// --------- REGISTRAR RESERVA -----------
 function fnRegistrarReserva() {
     const habitacion = document.getElementById("txtHabitacion").value;
     const dniCliente = document.getElementById("txtDniClienteReserva").value.trim();
@@ -184,12 +231,10 @@ function fnRegistrarReserva() {
     const fechaEgreso = document.getElementById("txtFechaEgreso").value.trim();
     const cantPersonas = parseInt(document.getElementById("txtCantidadPersonas").value);
     const estado = document.getElementById("txtEstadoReserva").value;
-
     if (!habitacion || !dniCliente || !fechaIngreso || !fechaEgreso || Number.isNaN(cantPersonas) || !estado) {
         alert("Por favor completá todos los campos");
         return;
     }
-
     // validar que el cliente exista
     let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
     const cliente = clientes.find(c => c.dni === dniCliente);
@@ -197,9 +242,7 @@ function fnRegistrarReserva() {
         alert("El cliente ingresado no existe. Registre el cliente primero.");
         return;
     }
-
     let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
-
     // Validar habitacion
     const existeSuperposicion = reservas.some(r =>
         r.habitacion === habitacion &&
@@ -213,7 +256,6 @@ function fnRegistrarReserva() {
         alert("Ya existe una reserva para esa habitación en las fechas seleccionadas.");
         return;
     }
-
     // Registrar la reserva
     const reserva = {
         habitacion,
@@ -226,7 +268,6 @@ function fnRegistrarReserva() {
     reservas.push(reserva);
     localStorage.setItem("reservas", JSON.stringify(reservas));
     alert("¡Reserva registrada exitosamente!");
-
     // Limpiar campos
     document.getElementById("txtHabitacion").value = "";
     document.getElementById("txtDniClienteReserva").value = "";
@@ -234,8 +275,27 @@ function fnRegistrarReserva() {
     document.getElementById("txtFechaEgreso").value = "";
     document.getElementById("txtCantidadPersonas").value = "";
     document.getElementById("txtEstadoReserva").value = "";
-
     fnVolver('secReserva');
+}
+
+function fnMostrarHabitaciones() {
+    let habitaciones = JSON.parse(localStorage.getItem("habitaciones")) || [];
+    let html = '<table border="1" style="width:100%; border-collapse:collapse;">';
+    html += '<tr><th>ID</th><th>Tipo</th><th>Piso</th><th>Capacidad</th></tr>';
+    
+    habitaciones.forEach(h => {
+        html += `<tr>
+                    <td>${h.id}</td>
+                    <td>${h.tipo}</td>
+                    <td>${h.piso}</td>
+                    <td>${h.capacidad}</td>
+                 </tr>`;
+    });
+    html += '</table>';
+    
+    document.getElementById("listaHabitaciones").innerHTML = html;
+    document.getElementById("secRegistrarHabitacion").style.display = "none";
+    document.getElementById("secListaHabitaciones").style.display = "block";
 }
 </script>
 </html>
