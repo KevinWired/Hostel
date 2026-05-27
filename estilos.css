@@ -1,44 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #f0f4f0;
-    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f3f8 0%, #e8d5f2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
 }
 
 .tarjeta {
     background: white;
-    padding: 1.5rem;
+    padding: 3rem;
     margin: 2rem auto;
-    border: 0.5px solid #ccc;
-    border-radius: 12px;
-    width: 320px;
+    border: none;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 1.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow-x: auto;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
 }
 
 .icono {
-    width: 40px;
-    height: 40px;
-    background: #E1F5EE;     /* verde clarito */
-    border-radius: 50%;       /* lo hace círculo */
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #9ACD32, #7CB342);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 28px;
+    box-shadow: 0 4px 15px rgba(156, 205, 50, 0.3);
 }
+
+h4 {
+    font-size: 24px;
+    color: #6B3FA0;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
 input {
     width: 100%;
     box-sizing: border-box;
 }
 
 button {
-    background: #1D9E75;
+    background: linear-gradient(135deg, #7B2D8E, #9ACD32);
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 14px;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 15px;
     cursor: pointer;
     width: 100%;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(123, 45, 142, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 input[type="text"],
@@ -46,34 +90,167 @@ input[type="password"],
 input[type="number"] {
     width: 100%;
     box-sizing: border-box;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #7B2D8E;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(123, 45, 142, 0.1);
 }
 
 input[type="button"] {
-    background: #1D9E75;
+    background: linear-gradient(135deg, #7B2D8E, #9ACD32);
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 14px;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 15px;
     cursor: pointer;
     width: 100%;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+input[type="button"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(123, 45, 142, 0.4);
+}
+
+input[type="button"]:active {
+    transform: translateY(0);
 }
 
 select {
     width: 100%;
     box-sizing: border-box;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: #7B2D8E;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(123, 45, 142, 0.1);
 }
 
 .encabezado {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 18px;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 1rem;
+}
+
+.encabezado h4 {
+    margin: 0;
+}
+
+/* Estilos para footer */
+footer {
+    background: linear-gradient(135deg, #6B3FA0 0%, #9ACD32 100%);
+    color: #7B2D8E;
+    padding: 3rem 2rem !important;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+footer p {
+    margin: 0.8rem 0;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+    color: #7B2D8E;
+}
+
+footer span {
+    display: block;
+    margin-top: 1.5rem;
+    font-size: 15px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+    color: #7B2D8E;
+}
+
+footer a {
+    color: #7B2D8E;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+footer a:hover {
+    color: #5a1f6b;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+footer iframe {
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para tablas */
+table {
+    border-collapse: collapse;
+    font-size: 14px;
+    width: 100%;
+    white-space: nowrap;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table th {
+    background-color: #7B2D8E;
+    color: white;
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 600;
+    min-width: 100px;
+    letter-spacing: 0.5px;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333333;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f7fc;
+}
+
+table tr:hover {
+    background-color: #e8dff5;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Header styling */
+header {
+    padding: 2rem;
+    text-align: center;
 }

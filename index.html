@@ -86,11 +86,25 @@
             <input type="button" value="Volver" onclick="fnVolver('secRegistrarHabitacion')">
         </section>
 
-        <!-- Agregar después del formulario en cada sección -->
+        <!-- Lista Habitaciones -->
         <section id="secListaHabitaciones" class="tarjeta" style="display:none">
             <h4>📋 Habitaciones Registradas</h4>
             <div id="listaHabitaciones"></div>
             <input type="button" value="Volver" onclick="fnVolver('secListaHabitaciones')">
+        </section>
+
+        <!-- Lista Clientes -->
+        <section id="secListaClientes" class="tarjeta" style="display:none">
+            <h4>👥 Clientes Registrados</h4>
+            <div id="listaClientes"></div>
+            <input type="button" value="Volver" onclick="fnVolver('secListaClientes')">
+        </section>
+
+        <!-- Lista Reservas -->
+        <section id="secListaReservas" class="tarjeta" style="display:none">
+            <h4>📅 Reservas Registradas</h4>
+            <div id="listaReservas"></div>
+            <input type="button" value="Volver" onclick="fnVolver('secListaReservas')">
         </section>
 
     </main>
@@ -109,7 +123,7 @@
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
-        <span>Desarrollado por <a href="https://github.com/kevinwired" target="_blank"><b>kevinwired</b></a></span>
+
     </footer>
 </body>
 <script>
@@ -280,22 +294,78 @@ function fnRegistrarReserva() {
 
 function fnMostrarHabitaciones() {
     let habitaciones = JSON.parse(localStorage.getItem("habitaciones")) || [];
-    let html = '<table border="1" style="width:100%; border-collapse:collapse;">';
+    let html = '<table>';
     html += '<tr><th>ID</th><th>Tipo</th><th>Piso</th><th>Capacidad</th></tr>';
     
-    habitaciones.forEach(h => {
-        html += `<tr>
-                    <td>${h.id}</td>
-                    <td>${h.tipo}</td>
-                    <td>${h.piso}</td>
-                    <td>${h.capacidad}</td>
-                 </tr>`;
-    });
+    if (habitaciones.length === 0) {
+        html += '<tr><td colspan="4" style="text-align:center; padding: 20px;">No hay habitaciones registradas</td></tr>';
+    } else {
+        habitaciones.forEach(h => {
+            html += `<tr>
+                        <td>${h.id}</td>
+                        <td>${h.tipo}</td>
+                        <td>${h.piso}</td>
+                        <td>${h.capacidad}</td>
+                     </tr>`;
+        });
+    }
     html += '</table>';
     
     document.getElementById("listaHabitaciones").innerHTML = html;
-    document.getElementById("secRegistrarHabitacion").style.display = "none";
+    document.getElementById("secMenu").style.display = "none";
     document.getElementById("secListaHabitaciones").style.display = "block";
+}
+
+function fnMostrarClientes() {
+    let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+    let html = '<table>';
+    html += '<tr><th>Nombre</th><th>Apellido</th><th>DNI</th><th>Email</th><th>Teléfono</th><th>Dirección</th></tr>';
+    
+    if (clientes.length === 0) {
+        html += '<tr><td colspan="6" style="text-align:center; padding: 20px;">No hay clientes registrados</td></tr>';
+    } else {
+        clientes.forEach(c => {
+            html += `<tr>
+                        <td>${c.nombre}</td>
+                        <td>${c.apellido}</td>
+                        <td>${c.dni}</td>
+                        <td>${c.email}</td>
+                        <td>${c.telefono}</td>
+                        <td>${c.direccion}</td>
+                     </tr>`;
+        });
+    }
+    html += '</table>';
+    
+    document.getElementById("listaClientes").innerHTML = html;
+    document.getElementById("secMenu").style.display = "none";
+    document.getElementById("secListaClientes").style.display = "block";
+}
+
+function fnMostrarReservas() {
+    let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+    let html = '<table>';
+    html += '<tr><th>Habitación</th><th>DNI Cliente</th><th>Fecha Ingreso</th><th>Fecha Egreso</th><th>Personas</th><th>Estado</th></tr>';
+    
+    if (reservas.length === 0) {
+        html += '<tr><td colspan="6" style="text-align:center; padding: 20px;">No hay reservas registradas</td></tr>';
+    } else {
+        reservas.forEach(r => {
+            html += `<tr>
+                        <td>${r.habitacion}</td>
+                        <td>${r.dniCliente}</td>
+                        <td>${r.fechaIngreso}</td>
+                        <td>${r.fechaEgreso}</td>
+                        <td>${r.cantPersonas}</td>
+                        <td><strong>${r.estado}</strong></td>
+                     </tr>`;
+        });
+    }
+    html += '</table>';
+    
+    document.getElementById("listaReservas").innerHTML = html;
+    document.getElementById("secMenu").style.display = "none";
+    document.getElementById("secListaReservas").style.display = "block";
 }
 </script>
 </html>
