@@ -4,7 +4,7 @@ Bienvenido/a al proyecto **Hostel**. Este repositorio contiene el código fuente
 
 ## Descripción
 
-La aplicacion web está diseñada para mostrar/administrar la información de un hostal de forma clara los administradores. 
+La aplicacion web está diseñada para mostrar/administrar reservas y habitaciones de un hostal de forma clara para los administradores. 
 Con una estructura sencilla.
 
 ## Características
