@@ -6,38 +6,44 @@
     <title>Hostel</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
+
 <body>
+
     <header>
         <!-- logo hostel link -->
     </header>
+
     <main>
-        <!-- menu -->
+
+        <!-- MENU -->
         <section id="secMenu" class="tarjeta" style="display:none">
+
             <div class="encabezado">
                 <div class="icono">🧳</div>
                 <h4>Bienvenid@</h4>
             </div>
-            <input type="button" value="Registrar Clientes" onclick="fnIrRegistrarCliente()">
-            <input type="button" value="Registrar Reserva" onclick="fnIrRegistrarReserva()">
-            <input type="button" value="Registrar Habitacion" onclick="fnIrRegistrarHabitacion()">
-            <!-- En secMenu, agregar: -->
-            <input type="button" value="Ver Habitaciones" onclick="fnMostrarHabitaciones()">
-            <input type="button" value="Ver Clientes" onclick="fnMostrarClientes()">
-            <input type="button" value="Ver Reservas" onclick="fnMostrarReservas()">
+
+            <input type="button" id="btnIrRegistrarCliente"    value="Registrar Clientes">
+            <input type="button" id="btnIrRegistrarReserva"    value="Registrar Reserva">
+            <input type="button" id="btnIrRegistrarHabitacion" value="Registrar Habitacion">
+            <input type="button" id="btnVerHabitaciones"       value="Ver Habitaciones">
+            <input type="button" id="btnVerClientes"           value="Ver Clientes">
+            <input type="button" id="btnVerReservas"           value="Ver Reservas">
+
         </section>
 
-        <!-- Login -->
+        <!-- LOGIN -->
         <section id="secLogin" class="tarjeta">
             <div class="encabezado">
                 <div class="icono">🧳</div>
                 <h4>Login</h4>
             </div>
-            <input type="text" id="txtUsuario" placeholder="Usuario">
-            <input type="password" id="txtClave" placeholder="Clave">
-            <input type="button" id="btnAgregar" value="Iniciar Sesion" onclick="fnLogin()">
+            <input type="text"     id="txtUsuario" placeholder="Usuario">
+            <input type="password" id="txtClave"   placeholder="Clave">
+            <input type="button"   id="btnAgregar" value="Iniciar Sesion">
         </section>
 
-        <!-- Registrar Reserva -->
+        <!-- REGISTRAR RESERVA -->
         <section id="secReserva" class="tarjeta" style="display:none">
             <h4>Registrar Reserva</h4>
             <select id="txtHabitacion">
@@ -48,324 +54,78 @@
                 <option value="4">Habitación #4</option>
                 <option value="5">Habitación #5</option>
             </select>
-            <input type="text" id="txtDniClienteReserva" placeholder="Ingrese el DNI del cliente">
-            <input type="text" id="txtFechaIngreso" placeholder="Ingrese fecha de ingreso dd/mm/aaaa">
-            <input type="text" id="txtFechaEgreso" placeholder="Ingrese fecha de egreso dd/mm/aaaa">
-            <input type="number" id="txtCantidadPersonas" placeholder="Cantidad de huéspedes">
+            <input type="text"   id="txtDniClienteReserva"  placeholder="Ingrese el DNI del cliente">
+            <input type="text"   id="txtFechaIngreso"        placeholder="Ingrese fecha de ingreso dd/mm/aaaa">
+            <input type="text"   id="txtFechaEgreso"         placeholder="Ingrese fecha de egreso dd/mm/aaaa">
+            <input type="number" id="txtCantidadPersonas"    placeholder="Cantidad de huéspedes">
             <select id="txtEstadoReserva">
                 <option value="">-- Estado de la Reserva --</option>
                 <option value="pendiente">Pendiente</option>
                 <option value="confirmada">Confirmada</option>
                 <option value="cancelada">Cancelada</option>
             </select>
-            <input type="button" id="btnEnviarReserva" value="Registrar Reserva" onclick="fnRegistrarReserva()">
-            <input type="button" value="Volver" onclick="fnVolver('secReserva')">
+            <input type="button" id="btnEnviarReserva" value="Registrar Reserva">
+            <input type="button" id=    "btnVolverReserva" value="Volver">
         </section>
 
-        <!-- Registrar Cliente -->
+        <!-- REGISTRAR CLIENTE -->
         <section id="secRegistrarCliente" class="tarjeta" style="display:none">
-            <h4>Registrar Cliente</h4>
-            <input type="text" id="txtNombreClnte" placeholder="Nombre">
-            <input type="text" id="txtApellidoClnte" placeholder="Apellido">
-            <input type="text" id="txtDNIClnte" placeholder="DNI">
-            <input type="text" id="txtEmailClnte" placeholder="E-mail">
-            <input type="text" id="txtNroTelClnte" placeholder="Contacto">
+            <h4>Registrar Huesped</h4>
+            <input type="text" id="txtNombreClnte"    placeholder="Nombre">
+            <input type="text" id="txtApellidoClnte"  placeholder="Apellido">
+            <input type="text" id="txtDNIClnte"       placeholder="DNI">
+            <input type="text" id="txtEmailClnte"     placeholder="E-mail">
+            <input type="text" id="txtNroTelClnte"    placeholder="Contacto">
             <input type="text" id="txtDireccionClnte" placeholder="Dirección">
-            <input type="button" id="btnEnviarCliente" value="Registrar Cliente" onclick="fnRegistrarCliente()">
-            <input type="button" value="Volver" onclick="fnVolver('secRegistrarCliente')">
+            <input type="button" id="btnEnviarCliente" value="Registrar Cliente">
+            <input type="button" id="btnVolverCliente" value="Volver">
         </section>
 
-        <!-- Registrar Habitaciones -->
+        <!-- REGISTRAR HABITACION -->
         <section id="secRegistrarHabitacion" class="tarjeta" style="display:none">
             <h4>Registrar Habitacion</h4>
-            <input type="text" id="txtIdHabitacion" placeholder="ID de habitación">
+            <input type="text" id="txtIdHabitacion"   placeholder="ID de habitación">
             <input type="text" id="txtTipoHabitacion" placeholder="Tipo de Habitación">
             <input type="text" id="txtPisoHabitacion" placeholder="Piso">
-            <input type="text" id="txtCapacidad" placeholder="Capacidad Maxima">
-            <input type="button" id="btnEnviarHabitacion" value="Registrar Habitación" onclick="fnRegistrarHabitacion()">
-            <input type="button" value="Volver" onclick="fnVolver('secRegistrarHabitacion')">
+            <input type="text" id="txtCapacidad"      placeholder="Capacidad Maxima">
+            <input type="button" id="btnEnviarHabitacion" value="Registrar Habitación">
+            <input type="button" id="btnVolverHabitacion" value="Volver">
         </section>
 
-        <!-- Lista Habitaciones -->
+        <!-- LISTA HABITACIONES -->
         <section id="secListaHabitaciones" class="tarjeta" style="display:none">
             <h4>📋 Habitaciones Registradas</h4>
             <div id="listaHabitaciones"></div>
-            <input type="button" value="Volver" onclick="fnVolver('secListaHabitaciones')">
+            <input type="button" id="btnVolverListaHabitaciones" value="Volver">
         </section>
 
-        <!-- Lista Clientes -->
+        <!-- LISTA CLIENTES -->
         <section id="secListaClientes" class="tarjeta" style="display:none">
+
             <h4>👥 Clientes Registrados</h4>
             <div id="listaClientes"></div>
-            <input type="button" value="Volver" onclick="fnVolver('secListaClientes')">
+            <input type="button" id="btnVolverListaClientes" value="Volver">
+
         </section>
 
-        <!-- Lista Reservas -->
+        <!-- LISTA RESERVAS -->
         <section id="secListaReservas" class="tarjeta" style="display:none">
+
             <h4>📅 Reservas Registradas</h4>
             <div id="listaReservas"></div>
-            <input type="button" value="Volver" onclick="fnVolver('secListaReservas')">
+            <input type="button" id="btnVolverListaReservas" value="Volver">
+
         </section>
 
     </main>
+
     <footer style="background:#f2f2f2;padding:15px;text-align:center;">
         <p>Link Córdoba Hostel</p>
         <p>Sede: Jujuy 267 | Córdoba, Argentina</p>
-        <div style="margin:0 auto; max-width:400px;">
-            <!-- Mapa de Google incrustado -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.1152067451526!2d-64.1922222244447!3d-31.410951795988566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432987f29efc1a1%3A0xe846d4c6903eb37c!2sJujuy%20267%2C%20X5000KAE%20C%C3%B3rdoba!5e0!3m2!1ses!2sar!4v1779680119169!5m2!1ses!2sar"
-                width="100%" 
-                height="200" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-
     </footer>
+
+    <!-- app.js es el punto de entrada principal; registrarHabitacion.js se importa desde app.js -->
+    <script type="module" src="./app.js"></script>
+
 </body>
-<script>
-// lista de usuarios
-let admins = [
-    { usuario: "kevin",   clave: "sa" },
-    { usuario: "micaela", clave: "micaela" },
-    { usuario: "jimena", clave: "jimena"},
-    { usuario: "cielo", clave: "cielo"},
-    { usuario: "lucas", clave: "lucas"}
-];
-
-// ------------- NAVEGACION -------------
-function fnIrRegistrarCliente() {
-    document.getElementById("secMenu").style.display = "none";
-    document.getElementById("secRegistrarCliente").style.display = "block";
-}
-function fnIrRegistrarReserva() {
-    document.getElementById("secMenu").style.display = "none";
-    document.getElementById("secReserva").style.display = "block";
-}
-function fnIrRegistrarHabitacion() {
-    document.getElementById("secMenu").style.display = "none";
-    document.getElementById("secRegistrarHabitacion").style.display = "block";
-}
-
-function fnVolver(seccion) {
-    document.getElementById(seccion).style.display = "none";
-    document.getElementById("secMenu").style.display = "block";
-}
-
-// --------- LOGIN -----------
-function fnLogin() {
-    const vUsuario = document.getElementById("txtUsuario").value;
-    const vClave = document.getElementById("txtClave").value;
-    if (vUsuario === "" || vClave === "") {
-        alert("Campo usuario o clave vacío(s)!");
-        return;
-    }
-    let admin = admins.find(j => j.usuario === vUsuario && j.clave === vClave);
-    if (!admin) {
-        alert("Usuario o clave incorrectos");
-        return;
-    }
-    document.getElementById("secLogin").style.display = "none";
-    document.getElementById("secMenu").style.display = "block";
-}
-
-// --------- REGISTRAR HABITACION -----------
-function fnRegistrarHabitacion() {
-    const id = document.getElementById("txtIdHabitacion").value.trim();
-    const tipoHab = document.getElementById("txtTipoHabitacion").value.trim();
-    const pisoHab = document.getElementById("txtPisoHabitacion").value.trim();
-    const capacidadHab = document.getElementById("txtCapacidad").value.trim();
-
-    if (!id || !tipoHab || !pisoHab || !capacidadHab ) {
-        alert("¡Por favor completa todos los campos obligatorios!");
-        return;
-    }
-    let habitaciones = JSON.parse(localStorage.getItem("habitaciones")) || [];
-    // Evita duplicados (ID de habitación único)
-    if (habitaciones.some(h => h.id === id)) {
-        alert("El ID de habitación ya está registrado.");
-        return;
-    }
-    habitaciones.push({
-        id,
-        tipo: tipoHab,
-        piso: pisoHab,
-        capacidad: capacidadHab
-    });
-    localStorage.setItem("habitaciones", JSON.stringify(habitaciones));
-    alert("¡Habitación registrada exitosamente!");
-    // Limpiar campos
-    document.getElementById("txtIdHabitacion").value = "";
-    document.getElementById("txtTipoHabitacion").value = "";
-    document.getElementById("txtPisoHabitacion").value = "";
-    document.getElementById("txtCapacidad").value = "";
-    fnVolver('secRegistrarHabitacion');
-}
-
-// --------- REGISTRAR CLIENTE -----------
-function fnRegistrarCliente() {
-    const nombre    = document.getElementById("txtNombreClnte").value.trim();
-    const apellido  = document.getElementById("txtApellidoClnte").value.trim();
-    const dni       = document.getElementById("txtDNIClnte").value.trim();
-    const email     = document.getElementById("txtEmailClnte").value.trim();
-    const telefono  = document.getElementById("txtNroTelClnte").value.trim();
-    const direccion = document.getElementById("txtDireccionClnte").value.trim();
-    if (!nombre || !apellido || !dni || !email || !telefono || !direccion) {
-        alert("¡Por favor completa todos los campos obligatorios!");
-        return;
-    }
-    let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
-    const existeDNI = clientes.some(c => c.dni === dni);
-    if (existeDNI) {
-        alert("El DNI ingresado ya está registrado. Verifica el dato.");
-        return;
-    }
-    const cliente = { nombre, apellido, dni, email, telefono, direccion };
-    clientes.push(cliente);
-    localStorage.setItem("clientes", JSON.stringify(clientes));
-    alert("¡Cliente registrado exitosamente!");
-    // Limpiar campos
-    document.getElementById("txtNombreClnte").value = "";
-    document.getElementById("txtApellidoClnte").value = "";
-    document.getElementById("txtDNIClnte").value = "";
-    document.getElementById("txtEmailClnte").value = "";
-    document.getElementById("txtNroTelClnte").value = "";
-    document.getElementById("txtDireccionClnte").value = "";
-    fnVolver('secRegistrarCliente');
-}
-
-// --------- REGISTRAR RESERVA -----------
-function fnRegistrarReserva() {
-    const habitacion = document.getElementById("txtHabitacion").value;
-    const dniCliente = document.getElementById("txtDniClienteReserva").value.trim();
-    const fechaIngreso = document.getElementById("txtFechaIngreso").value.trim();
-    const fechaEgreso = document.getElementById("txtFechaEgreso").value.trim();
-    const cantPersonas = parseInt(document.getElementById("txtCantidadPersonas").value);
-    const estado = document.getElementById("txtEstadoReserva").value;
-    if (!habitacion || !dniCliente || !fechaIngreso || !fechaEgreso || Number.isNaN(cantPersonas) || !estado) {
-        alert("Por favor completá todos los campos");
-        return;
-    }
-    // validar que el cliente exista
-    let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
-    const cliente = clientes.find(c => c.dni === dniCliente);
-    if (!cliente) {
-        alert("El cliente ingresado no existe. Registre el cliente primero.");
-        return;
-    }
-    let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
-    // Validar habitacion
-    const existeSuperposicion = reservas.some(r =>
-        r.habitacion === habitacion &&
-        !(
-          fechaEgreso <= r.fechaIngreso || // La nueva termina antes de que empiece la existente
-          fechaIngreso >= r.fechaEgreso    // La nueva empieza después de que termina la existente
-        ) &&
-        r.estado !== 'cancelada'
-    );
-    if (existeSuperposicion) {
-        alert("Ya existe una reserva para esa habitación en las fechas seleccionadas.");
-        return;
-    }
-    // Registrar la reserva
-    const reserva = {
-        habitacion,
-        dniCliente,
-        fechaIngreso,
-        fechaEgreso,
-        cantPersonas,
-        estado
-    };
-    reservas.push(reserva);
-    localStorage.setItem("reservas", JSON.stringify(reservas));
-    alert("¡Reserva registrada exitosamente!");
-    // Limpiar campos
-    document.getElementById("txtHabitacion").value = "";
-    document.getElementById("txtDniClienteReserva").value = "";
-    document.getElementById("txtFechaIngreso").value = "";
-    document.getElementById("txtFechaEgreso").value = "";
-    document.getElementById("txtCantidadPersonas").value = "";
-    document.getElementById("txtEstadoReserva").value = "";
-    fnVolver('secReserva');
-}
-
-function fnMostrarHabitaciones() {
-    let habitaciones = JSON.parse(localStorage.getItem("habitaciones")) || [];
-    let html = '<table>';
-    html += '<tr><th>ID</th><th>Tipo</th><th>Piso</th><th>Capacidad</th></tr>';
-    
-    if (habitaciones.length === 0) {
-        html += '<tr><td colspan="4" style="text-align:center; padding: 20px;">No hay habitaciones registradas</td></tr>';
-    } else {
-        habitaciones.forEach(h => {
-            html += `<tr>
-                        <td>${h.id}</td>
-                        <td>${h.tipo}</td>
-                        <td>${h.piso}</td>
-                        <td>${h.capacidad}</td>
-                     </tr>`;
-        });
-    }
-    html += '</table>';
-    
-    document.getElementById("listaHabitaciones").innerHTML = html;
-    document.getElementById("secMenu").style.display = "none";
-    document.getElementById("secListaHabitaciones").style.display = "block";
-}
-
-function fnMostrarClientes() {
-    let clientes = JSON.parse(localStorage.getItem("clientes")) || [];
-    let html = '<table>';
-    html += '<tr><th>Nombre</th><th>Apellido</th><th>DNI</th><th>Email</th><th>Teléfono</th><th>Dirección</th></tr>';
-    
-    if (clientes.length === 0) {
-        html += '<tr><td colspan="6" style="text-align:center; padding: 20px;">No hay clientes registrados</td></tr>';
-    } else {
-        clientes.forEach(c => {
-            html += `<tr>
-                        <td>${c.nombre}</td>
-                        <td>${c.apellido}</td>
-                        <td>${c.dni}</td>
-                        <td>${c.email}</td>
-                        <td>${c.telefono}</td>
-                        <td>${c.direccion}</td>
-                     </tr>`;
-        });
-    }
-    html += '</table>';
-    
-    document.getElementById("listaClientes").innerHTML = html;
-    document.getElementById("secMenu").style.display = "none";
-    document.getElementById("secListaClientes").style.display = "block";
-}
-
-function fnMostrarReservas() {
-    let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
-    let html = '<table>';
-    html += '<tr><th>Habitación</th><th>DNI Cliente</th><th>Fecha Ingreso</th><th>Fecha Egreso</th><th>Personas</th><th>Estado</th></tr>';
-    
-    if (reservas.length === 0) {
-        html += '<tr><td colspan="6" style="text-align:center; padding: 20px;">No hay reservas registradas</td></tr>';
-    } else {
-        reservas.forEach(r => {
-            html += `<tr>
-                        <td>${r.habitacion}</td>
-                        <td>${r.dniCliente}</td>
-                        <td>${r.fechaIngreso}</td>
-                        <td>${r.fechaEgreso}</td>
-                        <td>${r.cantPersonas}</td>
-                        <td><strong>${r.estado}</strong></td>
-                     </tr>`;
-        });
-    }
-    html += '</table>';
-    
-    document.getElementById("listaReservas").innerHTML = html;
-    document.getElementById("secMenu").style.display = "none";
-    document.getElementById("secListaReservas").style.display = "block";
-}
-</script>
 </html>
