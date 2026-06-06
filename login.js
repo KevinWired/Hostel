@@ -1,22 +1,21 @@
 export function fnLogin(admins) {
-
-    const vUsuario = document.getElementById("txtUsuario").value;
-    const vClave   = document.getElementById("txtClave").value;
+    const vUsuario = document.getElementById("txtUsuario").value.trim();
+    const vClave = document.getElementById("txtClave").value.trim();
 
     if (vUsuario === "" || vClave === "") {
         alert("Campo usuario o clave vacío(s)!");
-        return;
+        return null;
     }
 
-    const admin = admins.find(
-        j => j.usuario === vUsuario && j.clave === vClave
-    );
+    const admin = admins.find(j => j.usuario === vUsuario && j.clave === vClave);
 
     if (!admin) {
         alert("Usuario o clave incorrectos");
-        return;
+        return null;
     }
 
     document.getElementById("secLogin").style.display = "none";
-    document.getElementById("secMenu").style.display  = "block";
+    document.getElementById("secMenu").style.display = "block";
+    
+    return admin;
 }

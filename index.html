@@ -1,131 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hostel</title>
+    <title>Link Córdoba Hostel</title>
     <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
 
     <header>
-        <!-- logo hostel link -->
+        <div class="logo-container">
+            <i class="fas fa-bed"></i>
+            <h1>Link Córdoba Hostel</h1>
+        </div>
+        <div class="user-info" id="userInfo" style="display:none;">
+            <i class="fas fa-user-circle"></i>
+            <span id="userName"></span>
+            <button id="btnLogout" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </button>
+        </div>
     </header>
 
     <main>
-
-        <!-- MENU -->
-        <section id="secMenu" class="tarjeta" style="display:none">
-
-            <div class="encabezado">
-                <div class="icono">🧳</div>
-                <h4>Bienvenid@</h4>
-            </div>
-
-            <input type="button" id="btnIrRegistrarCliente"    value="Registrar Clientes">
-            <input type="button" id="btnIrRegistrarReserva"    value="Registrar Reserva">
-            <input type="button" id="btnIrRegistrarHabitacion" value="Registrar Habitacion">
-            <input type="button" id="btnVerHabitaciones"       value="Ver Habitaciones">
-            <input type="button" id="btnVerClientes"           value="Ver Clientes">
-            <input type="button" id="btnVerReservas"           value="Ver Reservas">
-
-        </section>
 
         <!-- LOGIN -->
         <section id="secLogin" class="tarjeta">
             <div class="encabezado">
                 <div class="icono">🧳</div>
-                <h4>Login</h4>
+                <h4>Iniciar sesión</h4>
             </div>
             <input type="text"     id="txtUsuario" placeholder="Usuario">
-            <input type="password" id="txtClave"   placeholder="Clave">
-            <input type="button"   id="btnAgregar" value="Iniciar Sesion">
+            <input type="password" id="txtClave"   placeholder="Contraseña">
+            <input type="button"   id="btnAgregar" value="Ingresar">
         </section>
 
+        <!-- MENÚ -->
+        <section id="secMenu" class="tarjeta" style="display:none;">
+            <div class="encabezado">
+                <div class="icono">🏨</div>
+                <h4>Panel de control</h4>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item" id="btnIrRegistrarCliente">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Registrar Huésped</span>
+                </div>
+                <div class="menu-item" id="btnIrRegistrarHabitacion">
+                    <i class="fas fa-door-open"></i>
+                    <span>Registrar Habitación</span>
+                </div>
+                <div class="menu-item" id="btnIrRegistrarReserva">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Registrar Reserva</span>
+                </div>
+                <div class="menu-item" id="btnVerClientes">
+                    <i class="fas fa-users"></i>
+                    <span>Ver Huéspedes</span>
+                </div>
+                <div class="menu-item" id="btnVerHabitaciones">
+                    <i class="fas fa-building"></i>
+                    <span>Ver Habitaciones</span>
+                </div>
+                <div class="menu-item" id="btnVerReservas">
+                    <i class="fas fa-list-alt"></i>
+                    <span>Ver Reservas</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- REGISTRAR CLIENTE -->
+<section id="secRegistrarCliente" class="tarjeta" style="display:none;">
+    <div class="encabezado">
+        <div class="icono">👤</div>
+        <h4>Registrar huésped</h4>
+    </div>
+    <input type="text"  id="txtNombreClnte"    placeholder="Nombre">
+    <input type="text"  id="txtApellidoClnte"  placeholder="Apellido">
+    <input type="text"  id="txtDNIClnte"       placeholder="DNI">
+    
+    <!-- NUEVO: Nacionalidad como select -->
+    <select id="txtNacionalidadClnte">
+        <option value="">-- Seleccionar nacionalidad --</option>
+        <option value="Argentina">🇦🇷 Argentina</option>
+        <option value="Bolivia">🇧🇴 Bolivia</option>
+        <option value="Brasil">🇧🇷 Brasil</option>
+        <option value="Chile">🇨🇱 Chile</option>
+        <option value="Colombia">🇨🇴 Colombia</option>
+        <option value="Ecuador">🇪🇨 Ecuador</option>
+        <option value="España">🇪🇸 España</option>
+        <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+        <option value="Francia">🇫🇷 Francia</option>
+        <option value="Italia">🇮🇹 Italia</option>
+        <option value="México">🇲🇽 México</option>
+        <option value="Paraguay">🇵🇾 Paraguay</option>
+        <option value="Perú">🇵🇪 Perú</option>
+        <option value="Uruguay">🇺🇾 Uruguay</option>
+        <option value="Venezuela">🇻🇪 Venezuela</option>
+        <option value="otra">🌍 Otra (especificar)</option>
+    </select>
+    
+    <!-- Campo que aparece solo si selecciona "Otra" -->
+    <input type="text" id="txtOtraNacionalidad" placeholder="Especificar nacionalidad" style="display:none;">
+    
+    <input type="email" id="txtEmailClnte"     placeholder="E-mail">
+    <input type="tel"   id="txtNroTelClnte"    placeholder="Teléfono">
+    
+    <!-- NUEVO: Dirección con sugerencias de formato -->
+    <input type="text"  id="txtDireccionClnte" 
+           placeholder="Dirección (ej: Av. Siempreviva 123, Piso 2, Depto B)"
+           pattern=".*\d+.*"
+           title="Incluí el número de calle para una dirección completa">
+    
+    <input type="button" id="btnEnviarCliente" value="Registrar cliente">
+    <input type="button" id="btnVolverCliente" value="Volver" class="btn-secundario">
+</section>
+
+        <!-- REGISTRAR HABITACIÓN -->
+<section id="secRegistrarHabitacion" class="tarjeta" style="display:none;">
+    <div class="encabezado">
+        <div class="icono">🚪</div>
+        <h4>Registrar habitación</h4>
+    </div>
+    <input type="text"   id="txtIdHabitacion"   placeholder="Número (ej: 101)">
+    <input type="text"   id="txtTipoHabitacion" placeholder="Tipo (Individual, Doble, Suite…)">
+    <input type="number" id="txtCapacidad"      placeholder="Capacidad máxima" min="1">
+    <input type="button" id="btnEnviarHabitacion" value="Registrar habitación">
+    <input type="button" id="btnVolverHabitacion" value="Volver" class="btn-secundario">
+</section>
+
         <!-- REGISTRAR RESERVA -->
-        <section id="secReserva" class="tarjeta" style="display:none">
-            <h4>Registrar Reserva</h4>
-            <select id="txtHabitacion">
-                <option value=""> >> Seleccionar Habitación </option>
-                <option value="1">Habitación #1</option>
-                <option value="2">Habitación #2</option>
-                <option value="3">Habitación #3</option>
-                <option value="4">Habitación #4</option>
-                <option value="5">Habitación #5</option>
+        <section id="secReserva" class="tarjeta" style="display:none;">
+            <div class="encabezado">
+                <div class="icono">📅</div>
+                <h4>Registrar Reserva</h4>
+            </div>
+            <input type="text"   id="txtDniClienteReserva"  placeholder="DNI del cliente">
+            <select id="txtHabitacionReserva">
+                <option value="">— Seleccionar habitación —</option>
             </select>
-            <input type="text"   id="txtDniClienteReserva"  placeholder="Ingrese el DNI del cliente">
-            <input type="text"   id="txtFechaIngreso"        placeholder="Ingrese fecha de ingreso dd/mm/aaaa">
-            <input type="text"   id="txtFechaEgreso"         placeholder="Ingrese fecha de egreso dd/mm/aaaa">
-            <input type="number" id="txtCantidadPersonas"    placeholder="Cantidad de huéspedes">
+            <input type="date"   id="txtFechaIngreso"        placeholder="Fecha de ingreso">
+            <input type="date"   id="txtFechaEgreso"         placeholder="Fecha de egreso">
+            <input type="number" id="txtCantidadPersonas"    placeholder="Cantidad de huéspedes" min="1">
             <select id="txtEstadoReserva">
-                <option value="">-- Estado de la Reserva --</option>
                 <option value="pendiente">Pendiente</option>
                 <option value="confirmada">Confirmada</option>
                 <option value="cancelada">Cancelada</option>
             </select>
-            <input type="button" id="btnEnviarReserva" value="Registrar Reserva">
-            <input type="button" id=    "btnVolverReserva" value="Volver">
-        </section>
-
-        <!-- REGISTRAR CLIENTE -->
-        <section id="secRegistrarCliente" class="tarjeta" style="display:none">
-            <h4>Registrar Huesped</h4>
-            <input type="text" id="txtNombreClnte"    placeholder="Nombre">
-            <input type="text" id="txtApellidoClnte"  placeholder="Apellido">
-            <input type="text" id="txtDNIClnte"       placeholder="DNI">
-            <input type="text" id="txtEmailClnte"     placeholder="E-mail">
-            <input type="text" id="txtNroTelClnte"    placeholder="Contacto">
-            <input type="text" id="txtDireccionClnte" placeholder="Dirección">
-            <input type="button" id="btnEnviarCliente" value="Registrar Cliente">
-            <input type="button" id="btnVolverCliente" value="Volver">
-        </section>
-
-        <!-- REGISTRAR HABITACION -->
-        <section id="secRegistrarHabitacion" class="tarjeta" style="display:none">
-            <h4>Registrar Habitacion</h4>
-            <input type="text" id="txtIdHabitacion"   placeholder="ID de habitación">
-            <input type="text" id="txtTipoHabitacion" placeholder="Tipo de Habitación">
-            <input type="text" id="txtPisoHabitacion" placeholder="Piso">
-            <input type="text" id="txtCapacidad"      placeholder="Capacidad Maxima">
-            <input type="button" id="btnEnviarHabitacion" value="Registrar Habitación">
-            <input type="button" id="btnVolverHabitacion" value="Volver">
+            <input type="button" id="btnEnviarReserva"  value="Registrar reserva">
+            <input type="button" id="btnVolverReserva"  value="Volver" class="btn-secundario">
         </section>
 
         <!-- LISTA HABITACIONES -->
-        <section id="secListaHabitaciones" class="tarjeta" style="display:none">
-            <h4>📋 Habitaciones Registradas</h4>
+        <section id="secListaHabitaciones" class="tarjeta tarjeta-lista" style="display:none;">
+            <div class="encabezado">
+                <div class="icono">📋</div>
+                <h4>Habitaciones Registradas</h4>
+            </div>
             <div id="listaHabitaciones"></div>
-            <input type="button" id="btnVolverListaHabitaciones" value="Volver">
+            <input type="button" id="btnVolverListaHabitaciones" value="Volver" class="btn-secundario">
         </section>
 
         <!-- LISTA CLIENTES -->
-        <section id="secListaClientes" class="tarjeta" style="display:none">
-
-            <h4>👥 Clientes Registrados</h4>
+        <section id="secListaClientes" class="tarjeta tarjeta-lista" style="display:none;">
+            <div class="encabezado">
+                <div class="icono">👥</div>
+                <h4>Huéspedes Registrados</h4>
+            </div>
             <div id="listaClientes"></div>
-            <input type="button" id="btnVolverListaClientes" value="Volver">
-
+            <input type="button" id="btnVolverListaClientes" value="Volver" class="btn-secundario">
         </section>
 
         <!-- LISTA RESERVAS -->
-        <section id="secListaReservas" class="tarjeta" style="display:none">
-
-            <h4>📅 Reservas Registradas</h4>
+        <section id="secListaReservas" class="tarjeta tarjeta-lista" style="display:none;">
+            <div class="encabezado">
+                <div class="icono">🗓️</div>
+                <h4>Reservas Registradas</h4>
+            </div>
             <div id="listaReservas"></div>
-            <input type="button" id="btnVolverListaReservas" value="Volver">
-
+            <input type="button" id="btnVolverListaReservas" value="Volver" class="btn-secundario">
         </section>
 
     </main>
 
-    <footer style="background:#f2f2f2;padding:15px;text-align:center;">
-        <p>Link Córdoba Hostel</p>
-        <p>Sede: Jujuy 267 | Córdoba, Argentina</p>
+    <footer>
+        <p><i class="fas fa-map-marker-alt" style="color:#7AB830;margin-right:6px"></i>
+           Jujuy 267 · Córdoba, Argentina</p>
+        <div class="mapa">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.1152067451526!2d-64.1922222244447!3d-31.410951795988566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432987f29efc1a1%3A0xe846d4c6903eb37c!2sJujuy%20267%2C%20X5000KAE%20C%C3%B3rdoba!5e0!3m2!1ses!2sar!4v1779680119169!5m2!1ses!2sar"
+                width="100%" height="200" style="border:0;display:block;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+        <span>Desarrollado por <a href="#" target="_blank">Equipo Hostel</a></span>
     </footer>
 
-    <!-- app.js es el punto de entrada principal; registrarHabitacion.js se importa desde app.js -->
     <script type="module" src="./app.js"></script>
-
 </body>
 </html>
