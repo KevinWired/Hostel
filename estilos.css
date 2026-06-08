@@ -227,7 +227,7 @@ select {
 select:focus {
     outline: none;
     border-color: var(--accent);
-    background-color: #fff;
+    background-color: #FFFFFF; /* fondo de lista de opciones (formulario) */
     box-shadow: 0 0 0 3px rgba(123, 45, 142, 0.10);
 }
 
@@ -247,7 +247,7 @@ input[type="button"] {
 
 input[type="button"]:not(.btn-logout):not(.btn-secundario) {
     background: var(--accent);
-    color: #fff;
+    color: #FFF;
     letter-spacing: 0.1px;
 }
 
@@ -538,4 +538,362 @@ footer a:hover { text-decoration: underline; }
 
 .btn-eliminar:active {
     transform: scale(0.95);
+}
+
+/* ─── Caja informativa ──────────────────────────────────── */
+.info-box {
+    background: #E8F0FE;
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin-bottom: 0.5rem;
+    font-size: 13px;
+}
+
+.info-box i {
+    color: var(--accent);
+    margin-right: 8px;
+}
+
+.info-box ul {
+    margin-top: 8px;
+    margin-left: 24px;
+}
+
+.info-box li {
+    margin: 4px 0;
+    color: var(--text-2);
+}
+
+/* ─── Labels para formularios ───────────────────────────── */
+label {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+label i {
+    font-size: 12px;
+    color: var(--accent);
+}
+
+/* ─── Botón eliminar habitación ─────────────────────────── */
+.btn-eliminar-habitacion {
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 8px;
+    color: #D94040;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.18s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #FEECEC;
+}
+
+.btn-eliminar-habitacion:hover {
+    background: #D94040;
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-eliminar-habitacion:active {
+    transform: scale(0.95);
+}
+
+/* ─── Botón eliminar reserva ────────────────────────────── */
+.btn-eliminar-reserva {
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 8px;
+    color: #D94040;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.18s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #FEECEC;
+}
+
+.btn-eliminar-reserva:hover {
+    background: #D94040;
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-eliminar-reserva:active {
+    transform: scale(0.95);
+}
+
+/* ============================================ */
+/* ESTILOS ELEGANTES PARA REGISTRAR HABITACIÓN  */
+/* ============================================ */
+
+/* Contenedor principal de la tarjeta de habitación */
+#secRegistrarHabitacion {
+    max-width: 580px;
+    padding: 1.8rem 2rem 2.2rem;
+}
+
+/* Info-box mejorado con gradiente sutil */
+#secRegistrarHabitacion .info-box {
+    background: linear-gradient(135deg, #F9F7FD 0%, #F2EEF8 100%);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    margin-bottom: 1.2rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+}
+
+#secRegistrarHabitacion .info-box:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+#secRegistrarHabitacion .info-box i {
+    font-size: 16px;
+    color: var(--accent);
+    margin-right: 10px;
+}
+
+#secRegistrarHabitacion .info-box strong {
+    font-size: 14px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 12px;
+    letter-spacing: -0.2px;
+}
+
+/* Grid de habitaciones elegante */
+#secRegistrarHabitacion .info-box div[style*="grid-template-columns"] {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 14px;
+    max-height: 210px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* Scroll personalizado */
+#secRegistrarHabitacion .info-box div[style*="grid-template-columns"]::-webkit-scrollbar {
+    width: 5px;
+}
+
+#secRegistrarHabitacion .info-box div[style*="grid-template-columns"]::-webkit-scrollbar-track {
+    background: #E8E0F0;
+    border-radius: 10px;
+}
+
+#secRegistrarHabitacion .info-box div[style*="grid-template-columns"]::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+/* Cada item de habitación */
+#secRegistrarHabitacion .info-box div[style*="grid-template-columns"] div {
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    cursor: default;
+    color: var(--text-2);
+    border: 1px solid transparent;
+}
+
+#secRegistrarHabitacion .info-box div[style*="grid-template-columns"] div:hover {
+    background: rgba(123, 45, 142, 0.08);
+    border-color: var(--accent-lt);
+    transform: translateX(3px);
+    color: var(--accent);
+}
+
+/* Campos readonly con estilo elegante */
+#secRegistrarHabitacion input[readonly] {
+    background: #F8F7FC !important;
+    border-color: #E8E0F0 !important;
+    color: var(--text-2);
+    font-weight: 500;
+    cursor: default;
+    font-family: 'DM Sans', monospace;
+}
+
+#secRegistrarHabitacion input[readonly]:focus {
+    box-shadow: none;
+    border-color: #E8E0F0 !important;
+    background: #F8F7FC !important;
+}
+
+/* Campo de número de habitación con foco especial */
+#secRegistrarHabitacion #txtIdHabitacion {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    background: linear-gradient(135deg, #fff, #FCFAFE);
+}
+
+#secRegistrarHabitacion #txtIdHabitacion:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(123, 45, 142, 0.12);
+    transform: scale(1.01);
+    background: #fff;
+}
+
+/* Animación de auto-completado */
+@keyframes flashSuccess {
+    0% { background-color: #E8F5E9; border-color: #66BB6A; }
+    100% { background-color: #F8F7FC; border-color: #E8E0F0; }
+}
+
+#secRegistrarHabitacion input[readonly].flash {
+    animation: flashSuccess 0.4s ease-out;
+}
+
+/* Botón de registrar con ícono y gradiente */
+#secRegistrarHabitacion #btnEnviarHabitacion {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-lt) 100%);
+    margin-top: 0.6rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: var(--radius-md);
+    padding: 12px 20px;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+#secRegistrarHabitacion #btnEnviarHabitacion:hover {
+    background: linear-gradient(135deg, var(--accent-lt) 0%, var(--accent) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(123, 45, 142, 0.35);
+}
+
+#secRegistrarHabitacion #btnEnviarHabitacion:active {
+    transform: translateY(0);
+}
+
+/* Botón volver */
+#secRegistrarHabitacion .btn-secundario {
+    background: transparent !important;
+    border: 1.5px solid var(--border-md) !important;
+    transition: all 0.2s ease;
+    margin-top: 0.3rem;
+}
+
+#secRegistrarHabitacion .btn-secundario:hover {
+    background: var(--surface) !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    transform: translateY(-1px);
+}
+
+/* Separador visual entre campos */
+#secRegistrarHabitacion .encabezado {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Efecto de carga visual en campos readonly al autocompletar */
+#secRegistrarHabitacion input[readonly].highlight {
+    background: linear-gradient(120deg, #E8F5E9 0%, #E8F5E9 50%, #F8F7FC 100%);
+    background-size: 200% 100%;
+    animation: shimmer 0.5s ease-in-out;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: 0% 0; }
+}
+
+/* Estilo especial para el campo de número */
+#secRegistrarHabitacion #txtIdHabitacion:in-range {
+    border-color: var(--green-lt);
+}
+
+#secRegistrarHabitacion #txtIdHabitacion:out-of-range {
+    border-color: #f44336;
+    background: #FFF5F5;
+}
+
+/* Placeholder personalizado para número de habitación */
+#secRegistrarHabitacion #txtIdHabitacion::placeholder {
+    color: var(--text-3);
+    font-weight: 400;
+    font-size: 13px;
+}
+
+/* ─── Registrar habitaciones en info-box ───────────────── */
+.hab-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.18s ease;
+    flex-wrap: wrap;
+}
+
+.hab-item:hover {
+    background: rgba(123, 45, 142, 0.06);
+    border-color: var(--accent-lt);
+}
+
+.hab-num {
+    font-family: 'DM Mono', monospace;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--accent);
+    background: #F0E4F8;
+    padding: 2px 7px;
+    border-radius: 6px;
+    min-width: 26px;
+    text-align: center;
+}
+
+.hab-tipo {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.hab-tipo.privada {
+    background: #EEF6FF;
+    color: #2563EB;
+}
+
+.hab-tipo.compartida {
+    background: #EDFAF2;
+    color: #1A6B3C;
+}
+
+.hab-cap {
+    font-size: 11.5px;
+    color: var(--text-2);
+    margin-left: auto;
+}
+
+.hab-bano {
+    font-size: 10.5px;
+    color: #1A6B3C;
+    background: #EDFAF2;
+    padding: 1px 6px;
+    border-radius: 5px;
+    white-space: nowrap;
 }

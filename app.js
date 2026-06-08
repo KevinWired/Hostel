@@ -1,13 +1,12 @@
 import { fnLogin } from "./login.js";
-import { fnRegistrarHabitacion } from "./registrarHabitacion.js";
+import { fnRegistrarHabitacion, initHabitacionAutoComplete } from "./registrarHabitacion.js";
 import { fnRegistrarCliente } from "./registrarCliente.js";
 import { fnRegistrarReserva, fnInicializarFechas, cargarHabitacionesEnSelect } from "./registrarReserva.js";
 import { fnMostrarHabitaciones, fnMostrarClientes, fnMostrarReservas } from "./visualizaciones.js";
 import { initNacionalidadListener, limpiarCamposCliente } from './validaciones.js';
 
-
-// ─── Inicialización ───────────────────────────────────────
-// Inicializar el listener del select de nacionalidad
+// ─── Inicialización de listeners ──────────────────────────
+initHabitacionAutoComplete();
 initNacionalidadListener();
 
 console.log("Sistema de Hostel iniciado correctamente");
@@ -15,13 +14,23 @@ console.log("Sistema de Hostel iniciado correctamente");
 // ─── Admins ───────────────────────────────────────────────
 const admins = [
     { usuario: "kevin",   clave: "sa",      nombre: "Kevin" },
-    { usuario: "micaela", clave: "micaela", nombre: "Micaela" },
-    { usuario: "jimena",  clave: "jimena",  nombre: "Jimena" },
     { usuario: "cielo",   clave: "cielo",   nombre: "Cielo" },
     { usuario: "lucas",   clave: "lucas",   nombre: "Lucas" }
 ];
 
 let usuarioActual = null;
+
+// ─── Lista de todas las secciones del sistema ────────────
+// Al hacer logout se ocultan TODAS para no dejar ninguna visible
+const TODAS_LAS_SECCIONES = [
+    "secMenu",
+    "secRegistrarCliente",
+    "secRegistrarHabitacion",
+    "secReserva",
+    "secListaHabitaciones",
+    "secListaClientes",
+    "secListaReservas"
+];
 
 // ─── Helpers de navegación ────────────────────────────────
 function fnMostrar(idSeccion) {
@@ -45,80 +54,132 @@ function fnVolver(origen) {
 }
 
 // ─── Logout ───────────────────────────────────────────────
+// Bug corregido: se ocultan TODAS las secciones antes de mostrar
+// el login, para evitar que quede visible la sección que el usuario
+// tenía abierta al momento de hacer logout.
 function fnLogout() {
     usuarioActual = null;
+
+    // Ocultar todas las secciones del sistema
+    TODAS_LAS_SECCIONES.forEach(fnOcultar);
+
+    // Ocultar userInfo y mostrar login
     document.getElementById("userInfo").style.display = "none";
-    fnOcultar("secMenu");
     fnMostrar("secLogin");
+
+    // Limpiar credenciales
     document.getElementById("txtUsuario").value = "";
     document.getElementById("txtClave").value = "";
 }
 
 // ─── Login ────────────────────────────────────────────────
-document.getElementById("btnAgregar").addEventListener("click", () => {
-    const result = fnLogin(admins);
-    if (result) {
-        usuarioActual = result;
-        document.getElementById("userName").innerText = result.nombre;
-        document.getElementById("userInfo").style.display = "flex";
-    }
-});
+const btnAgregar = document.getElementById("btnAgregar");
+if (btnAgregar) {
+    btnAgregar.addEventListener("click", () => {
+        const result = fnLogin(admins);
+        if (result) {
+            usuarioActual = result;
+            document.getElementById("userName").innerText = result.nombre;
+            document.getElementById("userInfo").style.display = "flex";
+        }
+    });
+}
 
-document.getElementById("btnLogout").addEventListener("click", fnLogout);
+const btnLogout = document.getElementById("btnLogout");
+if (btnLogout) {
+    btnLogout.addEventListener("click", fnLogout);
+}
 
 // ─── Botones del menú ─────────────────────────────────────
-document.getElementById("btnIrRegistrarCliente").addEventListener("click", () => {
-    // Limpiar campos al abrir
-    ["txtNombreClnte", "txtApellidoClnte", "txtDNIClnte",
-     "txtEmailClnte", "txtNroTelClnte", "txtDireccionClnte"]
-        .forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.value = "";
-        });
-    fnIrA("secRegistrarCliente");
-});
+const btnIrRegistrarCliente = document.getElementById("btnIrRegistrarCliente");
+if (btnIrRegistrarCliente) {
+    btnIrRegistrarCliente.addEventListener("click", () => {
+        limpiarCamposCliente();
+        fnIrA("secRegistrarCliente");
+    });
+}
 
-document.getElementById("btnIrRegistrarReserva").addEventListener("click", () => {
-    cargarHabitacionesEnSelect();
-    fnInicializarFechas();
-    fnIrA("secReserva");
-});
+const btnIrRegistrarReserva = document.getElementById("btnIrRegistrarReserva");
+if (btnIrRegistrarReserva) {
+    btnIrRegistrarReserva.addEventListener("click", () => {
+        cargarHabitacionesEnSelect();
+        fnInicializarFechas();
+        fnIrA("secReserva");
+    });
+}
 
-document.getElementById("btnIrRegistrarHabitacion").addEventListener("click", () => {
-    fnIrA("secRegistrarHabitacion");
-});
+const btnIrRegistrarHabitacion = document.getElementById("btnIrRegistrarHabitacion");
+if (btnIrRegistrarHabitacion) {
+    btnIrRegistrarHabitacion.addEventListener("click", () => {
+        fnIrA("secRegistrarHabitacion");
+    });
+}
 
-document.getElementById("btnVerHabitaciones").addEventListener("click", () => {
-    fnMostrarHabitaciones();
-    fnIrA("secListaHabitaciones");
-});
+const btnVerHabitaciones = document.getElementById("btnVerHabitaciones");
+if (btnVerHabitaciones) {
+    btnVerHabitaciones.addEventListener("click", () => {
+        fnMostrarHabitaciones();
+        fnIrA("secListaHabitaciones");
+    });
+}
 
-document.getElementById("btnVerClientes").addEventListener("click", () => {
-    fnMostrarClientes();
-    fnIrA("secListaClientes");
-});
+const btnVerClientes = document.getElementById("btnVerClientes");
+if (btnVerClientes) {
+    btnVerClientes.addEventListener("click", () => {
+        fnMostrarClientes();
+        fnIrA("secListaClientes");
+    });
+}
 
-document.getElementById("btnVerReservas").addEventListener("click", () => {
-    fnMostrarReservas();
-    fnIrA("secListaReservas");
-});
+const btnVerReservas = document.getElementById("btnVerReservas");
+if (btnVerReservas) {
+    btnVerReservas.addEventListener("click", () => {
+        fnMostrarReservas();
+        fnIrA("secListaReservas");
+    });
+}
 
 // ─── Botones "Volver" ─────────────────────────────────────
-document.getElementById("btnVolverReserva").addEventListener("click", () => fnVolver("secReserva"));
-document.getElementById("btnVolverCliente").addEventListener("click", () => fnVolver("secRegistrarCliente"));
-document.getElementById("btnVolverHabitacion").addEventListener("click", () => fnVolver("secRegistrarHabitacion"));
-document.getElementById("btnVolverListaHabitaciones").addEventListener("click", () => fnVolver("secListaHabitaciones"));
-document.getElementById("btnVolverListaClientes").addEventListener("click", () => fnVolver("secListaClientes"));
-document.getElementById("btnVolverListaReservas").addEventListener("click", () => fnVolver("secListaReservas"));
+const volverReserva = document.getElementById("btnVolverReserva");
+if (volverReserva) volverReserva.addEventListener("click", () => fnVolver("secReserva"));
+
+const volverCliente = document.getElementById("btnVolverCliente");
+if (volverCliente) volverCliente.addEventListener("click", () => fnVolver("secRegistrarCliente"));
+
+const volverHabitacion = document.getElementById("btnVolverHabitacion");
+if (volverHabitacion) volverHabitacion.addEventListener("click", () => fnVolver("secRegistrarHabitacion"));
+
+const volverListaHabitaciones = document.getElementById("btnVolverListaHabitaciones");
+if (volverListaHabitaciones) volverListaHabitaciones.addEventListener("click", () => fnVolver("secListaHabitaciones"));
+
+const volverListaClientes = document.getElementById("btnVolverListaClientes");
+if (volverListaClientes) volverListaClientes.addEventListener("click", () => fnVolver("secListaClientes"));
+
+const volverListaReservas = document.getElementById("btnVolverListaReservas");
+if (volverListaReservas) volverListaReservas.addEventListener("click", () => fnVolver("secListaReservas"));
 
 // ─── Botones "Registrar" ──────────────────────────────────
-document.getElementById("btnEnviarReserva").addEventListener("click", () => {
-    fnRegistrarReserva();
-    cargarHabitacionesEnSelect(); // Recargar select después de registrar
-});
+const btnEnviarReserva = document.getElementById("btnEnviarReserva");
+if (btnEnviarReserva) {
+    btnEnviarReserva.addEventListener("click", () => {
+        fnRegistrarReserva();
+        cargarHabitacionesEnSelect();
+    });
+}
 
-document.getElementById("btnEnviarCliente").addEventListener("click", () => fnRegistrarCliente(fnVolver));
-document.getElementById("btnEnviarHabitacion").addEventListener("click", () => fnRegistrarHabitacion(fnVolver));
+const btnEnviarCliente = document.getElementById("btnEnviarCliente");
+if (btnEnviarCliente) {
+    btnEnviarCliente.addEventListener("click", () => fnRegistrarCliente(fnVolver));
+}
 
-// ─── Inicialización ───────────────────────────────────────
-console.log("Sistema de Hostel iniciado correctamente");
+// Bug corregido: se pasa cargarHabitacionesEnSelect como parámetro
+// para que registrarHabitacion.js pueda recargar el select sin
+// necesidad de acceder a window (que nunca funcionaba).
+const btnEnviarHabitacion = document.getElementById("btnEnviarHabitacion");
+if (btnEnviarHabitacion) {
+    btnEnviarHabitacion.addEventListener("click", () => 
+        fnRegistrarHabitacion(fnVolver, cargarHabitacionesEnSelect)
+    );
+}
+
+console.log("✅ Todos los event listeners fueron inicializados correctamente");

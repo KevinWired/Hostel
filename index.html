@@ -36,7 +36,7 @@
             <input type="button"   id="btnAgregar" value="Ingresar">
         </section>
 
-        <!-- MENÚ -->
+        <!-- MENU -->
         <section id="secMenu" class="tarjeta" style="display:none;">
             <div class="encabezado">
                 <div class="icono">🏨</div>
@@ -71,85 +71,204 @@
         </section>
 
         <!-- REGISTRAR CLIENTE -->
-<section id="secRegistrarCliente" class="tarjeta" style="display:none;">
-    <div class="encabezado">
-        <div class="icono">👤</div>
-        <h4>Registrar huésped</h4>
-    </div>
-    <input type="text"  id="txtNombreClnte"    placeholder="Nombre">
-    <input type="text"  id="txtApellidoClnte"  placeholder="Apellido">
-    <input type="text"  id="txtDNIClnte"       placeholder="DNI">
-    
-    <!-- NUEVO: Nacionalidad como select -->
-    <select id="txtNacionalidadClnte">
-        <option value="">-- Seleccionar nacionalidad --</option>
-        <option value="Argentina">🇦🇷 Argentina</option>
-        <option value="Bolivia">🇧🇴 Bolivia</option>
-        <option value="Brasil">🇧🇷 Brasil</option>
-        <option value="Chile">🇨🇱 Chile</option>
-        <option value="Colombia">🇨🇴 Colombia</option>
-        <option value="Ecuador">🇪🇨 Ecuador</option>
-        <option value="España">🇪🇸 España</option>
-        <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
-        <option value="Francia">🇫🇷 Francia</option>
-        <option value="Italia">🇮🇹 Italia</option>
-        <option value="México">🇲🇽 México</option>
-        <option value="Paraguay">🇵🇾 Paraguay</option>
-        <option value="Perú">🇵🇪 Perú</option>
-        <option value="Uruguay">🇺🇾 Uruguay</option>
-        <option value="Venezuela">🇻🇪 Venezuela</option>
-        <option value="otra">🌍 Otra (especificar)</option>
-    </select>
-    
-    <!-- Campo que aparece solo si selecciona "Otra" -->
-    <input type="text" id="txtOtraNacionalidad" placeholder="Especificar nacionalidad" style="display:none;">
-    
-    <input type="email" id="txtEmailClnte"     placeholder="E-mail">
-    <input type="tel"   id="txtNroTelClnte"    placeholder="Teléfono">
-    
-    <!-- NUEVO: Dirección con sugerencias de formato -->
-    <input type="text"  id="txtDireccionClnte" 
-           placeholder="Dirección (ej: Av. Siempreviva 123, Piso 2, Depto B)"
-           pattern=".*\d+.*"
-           title="Incluí el número de calle para una dirección completa">
-    
-    <input type="button" id="btnEnviarCliente" value="Registrar cliente">
-    <input type="button" id="btnVolverCliente" value="Volver" class="btn-secundario">
-</section>
+        <section id="secRegistrarCliente" class="tarjeta" style="display:none;">
+            <div class="encabezado">
+                <div class="icono">👤</div>
+                <h4>Registrar Huésped</h4>
+            </div>
+            <input type="text"  id="txtNombreClnte"    placeholder="Nombre">
+            <input type="text"  id="txtApellidoClnte"  placeholder="Apellido">
+            <input type="text"  id="txtDNIClnte"       placeholder="DNI">
+            
+            <select id="txtNacionalidadClnte">
+                <option value="">Nacionalidad</option>
+                <option value="Argentina">🇦🇷 Argentina</option>
+                <option value="Bolivia">🇧🇴 Bolivia</option>
+                <option value="Brasil">🇧🇷 Brasil</option>
+                <option value="Chile">🇨🇱 Chile</option>
+                <option value="Colombia">🇨🇴 Colombia</option>
+                <option value="Ecuador">🇪🇨 Ecuador</option>
+                <option value="España">🇪🇸 España</option>
+                <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+                <option value="Francia">🇫🇷 Francia</option>
+                <option value="Italia">🇮🇹 Italia</option>
+                <option value="México">🇲🇽 México</option>
+                <option value="Paraguay">🇵🇾 Paraguay</option>
+                <option value="Perú">🇵🇪 Perú</option>
+                <option value="Uruguay">🇺🇾 Uruguay</option>
+                <option value="Venezuela">🇻🇪 Venezuela</option>
+                <option value="otra">🌍 Otra; especificar</option>
+            </select>
+            
+            <input type="text" id="txtOtraNacionalidad" placeholder="Especificar nacionalidad" style="display:none;">
+            
+            <input type="email" id="txtEmailClnte"     placeholder="E-mail">
+            <input type="tel"   id="txtNroTelClnte"    placeholder="Teléfono">
+            <input type="text"  id="txtDireccionClnte" 
+                   placeholder="Dirección (ej: Av. Siempreviva 123, Piso 2, Depto B)"
+                   pattern=".*\d+.*"
+                   title="Incluí el número de calle para una dirección completa">
+            
+            <input type="button" id="btnEnviarCliente" value="Grabar">
+            <input type="button" id="btnVolverCliente" value="Volver" class="btn-secundario">
+        </section>
 
-        <!-- REGISTRAR HABITACIÓN -->
+ <!-- REGISTRAR HABITACIÓN -->
 <section id="secRegistrarHabitacion" class="tarjeta" style="display:none;">
-    <div class="encabezado">
+    <div class="encabezado">    
         <div class="icono">🚪</div>
-        <h4>Registrar habitación</h4>
+        <h4>Registrar Habitación</h4>
     </div>
-    <input type="text"   id="txtIdHabitacion"   placeholder="Número (ej: 101)">
-    <input type="text"   id="txtTipoHabitacion" placeholder="Tipo (Individual, Doble, Suite…)">
-    <input type="number" id="txtCapacidad"      placeholder="Capacidad máxima" min="1">
-    <input type="button" id="btnEnviarHabitacion" value="Registrar habitación">
+    <p style="font-size: 13px; color: var(--text-2); margin: 0 0 5px 0;">
+        <i class= style="color: var(--accent);"></i> 
+        Ingresá el número y los campos se completan automáticamente.<br>
+        La tabla muestra el tipo de habitacion, capacidad y si tiene baño privado.
+    </p>    
+
+    <div class="info-box">
+        <i class="fas fa-info-circle"></i>
+        <strong>Habitaciones disponibles (1 al 15):</strong>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 16px; margin-top: 10px;">
+
+            <div class="hab-item">
+                <span class="hab-num">01</span>
+                <span class="hab-tipo compartida">Compartida</span>
+                <span class="hab-cap">6 pers.</span>
+            </div>
+            <div class="hab-item">
+                <span class="hab-num">06</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">4 pers.</span>
+                <span class="hab-bano">🚿 privado</span>
+            </div>
+            <div class="hab-item">
+                <span class="hab-num">11</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">4 pers.</span>
+            </div>
+
+            <div class="hab-item">
+                <span class="hab-num">02</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">5 pers.</span>
+            </div>
+            <div class="hab-item">
+                <span class="hab-num">07</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">5 pers.</span>
+            </div>
+            <div class="hab-item">
+                <span class="hab-num">12</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">4 pers.</span>
+            </div>
+
+            <div class="hab-item">
+                <span class="hab-num">03</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">4 pers.</span>
+            </div>
+            <div class="hab-item">
+                <span class="hab-num">08</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">6 pers.</span>
+            </div>
+            <div class="hab-item">
+                <span class="hab-num">13</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">1 pers.</span>
+            </div>
+
+            <div class="hab-item">
+                <span class="hab-num">04</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">4 pers.</span>
+            </div>
+            <div class="hab-item">
+                <span class="hab-num">09</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">6 pers.</span>
+                <span class="hab-bano">🚿 privado</span>
+            </div>
+            <div class="hab-item">
+                <span class="hab-num">14</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">1 pers.</span>
+            </div>
+
+            <div class="hab-item">
+                <span class="hab-num">05</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">2 pers.</span>
+            </div>
+            <div class="hab-item">
+                <span class="hab-num">10</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">2 pers.</span>
+            </div>
+            <div class="hab-item">
+                <span class="hab-num">15</span>
+                <span class="hab-tipo privada">Privada</span>
+                <span class="hab-cap">1 pers.</span>
+            </div>
+
+        </div>
+    </div>
+
+    <input type="number" id="txtIdHabitacion" placeholder="Número de habitación (1 al 15)" min="1" max="15">
+    <input type="text" id="txtTipoHabitacion" placeholder="Tipo" readonly style="background-color:#f5f5f5; cursor:not-allowed;">
+    <input type="number" id="txtCapacidad" placeholder="Capacidad" readonly style="background-color:#f5f5f5; cursor:not-allowed;">
+    <input type="text" id="txtDescripcionHabitacion" placeholder="Descripción" readonly style="background-color:#f5f5f5; cursor:not-allowed;">
+    <input type="text" id="txtBanoHabitacion" placeholder="Baño" readonly style="background-color:#f5f5f5; cursor:not-allowed;">
+
+    <input type="button" id="btnEnviarHabitacion" value="Grabar">
     <input type="button" id="btnVolverHabitacion" value="Volver" class="btn-secundario">
 </section>
 
-        <!-- REGISTRAR RESERVA -->
+        <!-- REGISTRAR RESERVA - CORREGIDO: primero cliente, después habitación -->
         <section id="secReserva" class="tarjeta" style="display:none;">
             <div class="encabezado">
-                <div class="icono">📅</div>
+                <div class="icono">🛎️</div>
                 <h4>Registrar Reserva</h4>
             </div>
-            <input type="text"   id="txtDniClienteReserva"  placeholder="DNI del cliente">
+            
+            <div class="info-box" style="background:#b9f0c7; border-left-color:#b468af;">
+                <i class="fas fa-calendar-alt"></i>
+                <strong>Información útil:</strong>
+                <ul style="margin: 6px 0 0 20px; font-size: 12px;">
+                    <li>📅 Las fechas se seleccionan con el calendario</li>
+                    <li>🕒 El ingreso no puede ser anterior a hoy</li>
+                    <li>🕒 El egreso debe ser posterior al ingreso</li>
+                    <li>🛏️ Debe existir una habitación para hacer una reserva</li>
+                </ul>
+            </div>
+
+            <input type="text" id="txtDniClienteReserva" placeholder="DNI">
+            
             <select id="txtHabitacionReserva">
-                <option value="">— Seleccionar habitación —</option>
+                <option value="">Seleccionar Habitación</option>
             </select>
-            <input type="date"   id="txtFechaIngreso"        placeholder="Fecha de ingreso">
-            <input type="date"   id="txtFechaEgreso"         placeholder="Fecha de egreso">
-            <input type="number" id="txtCantidadPersonas"    placeholder="Cantidad de huéspedes" min="1">
+            
+            <label style="font-size: 12px; color: var(--text-2); margin-top: 8px;">
+                <i class="fas fa-calendar-plus"></i> Fecha de Ingreso:
+            </label>
+            <input type="date" id="txtFechaIngreso">
+            
+            <label style="font-size: 12px; color: var(--text-2);">
+                <i class="fas fa-calendar-check"></i> Fecha de Egreso:
+            </label>
+            <input type="date" id="txtFechaEgreso">
+            
+            <input type="number" id="txtCantidadPersonas" placeholder="Cantidad de huéspedes" min="1">
+            
             <select id="txtEstadoReserva">
-                <option value="pendiente">Pendiente</option>
-                <option value="confirmada">Confirmada</option>
-                <option value="cancelada">Cancelada</option>
+                <option value="pendiente">⏳ Pendiente</option>
+                <option value="confirmada">✅ Confirmada</option>
+                <option value="cancelada">❌ Cancelada</option>
             </select>
-            <input type="button" id="btnEnviarReserva"  value="Registrar reserva">
-            <input type="button" id="btnVolverReserva"  value="Volver" class="btn-secundario">
+            
+            <input type="button" id="btnEnviarReserva" value="Grabar">
+            <input type="button" id="btnVolverReserva" value="Volver" class="btn-secundario">
         </section>
 
         <!-- LISTA HABITACIONES -->
