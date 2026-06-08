@@ -897,3 +897,9 @@ label i {
     border-radius: 5px;
     white-space: nowrap;
 }
+
+.logo-header {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
