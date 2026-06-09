@@ -147,6 +147,18 @@ export function fnMostrarClientes() {
         </div>`;
 }
 
+// ─── Cambiar estado de reserva ────────────────────────────────
+export function fnCambiarEstadoReserva(idReserva, nuevoEstado) {
+    let reservas = JSON.parse(localStorage.getItem('reservas')) || [];
+    const reserva = reservas.find(r => r.id === idReserva);
+
+    if (reserva) {
+        reserva.estado = nuevoEstado;
+        localStorage.setItem('reservas', JSON.stringify(reservas));
+        fnMostrarReservas();
+    }
+}
+
 // ─── Eliminar reserva ─────────────────────────────────────────
 export function fnEliminarReserva(idReserva) {
     if (confirm('¿Estás seguro de que querés eliminar esta reserva?\n\nEsta acción no se puede deshacer.')) {
@@ -182,8 +194,6 @@ export function fnMostrarReservas() {
                <div class="cell-secondary">${r.dniCliente}</div>`
             : `<div class="cell-secondary">${r.dniCliente}</div>`;
 
-        const badge = `badge-${r.estado}`;
-
         // Bug corregido: usar parseFechaLocal en lugar de new Date(string)
         // para evitar que el conteo de noches sea incorrecto en UTC-3.
         const noches = r.fechaIngreso && r.fechaEgreso
@@ -205,7 +215,13 @@ export function fnMostrarReservas() {
                     ${r.cantPersonas}
                 </span>
             </td>
-            <td><span class="badge ${badge}">${r.estado}</span></td>
+            <td>
+                <select class="estado-select" data-id="${r.id}" style="padding:4px 6px;border-radius:4px;border:1px solid var(--border);background:var(--bg-2);color:var(--text);font-size:12px;cursor:pointer;">
+                    <option value="pendiente" ${r.estado === 'pendiente' ? 'selected' : ''}>Pendiente</option>
+                    <option value="confirmada" ${r.estado === 'confirmada' ? 'selected' : ''}>Confirmada</option>
+                    <option value="cancelada" ${r.estado === 'cancelada' ? 'selected' : ''}>Cancelada</option>
+                </select>
+            </td>
             <td style="text-align:center;">
                 <button class="btn-eliminar-reserva" data-id="${r.id}" title="Eliminar reserva">
                     <i class="fas fa-trash-alt"></i>
@@ -227,6 +243,16 @@ export function fnMostrarReservas() {
             </table>
         </div>`;
 
+    // Event listeners para cambiar estado
+    document.querySelectorAll('.estado-select').forEach(select => {
+        select.addEventListener('change', e => {
+            const idReserva = select.getAttribute('data-id');
+            const nuevoEstado = select.value;
+            fnCambiarEstadoReserva(idReserva, nuevoEstado);
+        });
+    });
+
+    // Event listeners para eliminar
     document.querySelectorAll('.btn-eliminar-reserva').forEach(btn => {
         btn.addEventListener('click', e => {
             e.stopPropagation();
