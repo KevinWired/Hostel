@@ -153,8 +153,7 @@ main {
 }
 
 .login-subtitle {
-    margin-top: -2px;
-    margin-bottom: 2px;
+    margin: 0 0 2px;
     font-size: 13.5px;
     color: var(--text-2);
 }
@@ -223,9 +222,14 @@ input[type="date"]:focus {
     transform: translateY(-1px);
 }
 
-.input-error {
-    border-color: #DC2626 !important;
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.14) !important;
+input[type="text"].input-error,
+input[type="password"].input-error,
+input[type="number"].input-error,
+input[type="email"].input-error,
+input[type="tel"].input-error,
+input[type="date"].input-error {
+    border-color: #DC2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.14);
 }
 
 input[type="text"]::placeholder,
@@ -559,7 +563,18 @@ body.modo-login #secLogin {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    * {
+    .tarjeta,
+    .menu-item,
+    .menu-item i,
+    .login-feedback,
+    .btn-eliminar,
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="button"] {
         transition: none !important;
         animation: none !important;
     }
