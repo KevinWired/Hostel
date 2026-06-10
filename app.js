@@ -66,18 +66,10 @@ function fnLogout() {
     // Ocultar userInfo y mostrar login
     document.getElementById("userInfo").style.display = "none";
     fnMostrar("secLogin");
-    document.body.classList.add("modo-login");
 
     // Limpiar credenciales
     document.getElementById("txtUsuario").value = "";
     document.getElementById("txtClave").value = "";
-    document.getElementById("txtUsuario").classList.remove("input-error");
-    document.getElementById("txtClave").classList.remove("input-error");
-    const loginFeedback = document.getElementById("loginFeedback");
-    if (loginFeedback) {
-        loginFeedback.textContent = "";
-        loginFeedback.classList.remove("login-feedback--error");
-    }
 }
 
 // ─── Login ────────────────────────────────────────────────
@@ -89,30 +81,9 @@ if (btnAgregar) {
             usuarioActual = result;
             document.getElementById("userName").innerText = result.nombre;
             document.getElementById("userInfo").style.display = "flex";
-            document.body.classList.remove("modo-login");
         }
     });
 }
-
-["txtUsuario", "txtClave"].forEach((id) => {
-    const input = document.getElementById(id);
-    if (!input) return;
-
-    input.addEventListener("input", () => {
-        input.classList.remove("input-error");
-        const loginFeedback = document.getElementById("loginFeedback");
-        if (loginFeedback) {
-            loginFeedback.textContent = "";
-            loginFeedback.classList.remove("login-feedback--error");
-        }
-    });
-
-    input.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" && btnAgregar) {
-            btnAgregar.click();
-        }
-    });
-});
 
 const btnLogout = document.getElementById("btnLogout");
 if (btnLogout) {
